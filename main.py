@@ -15,15 +15,25 @@ def telegram_bot(token):
     @bot.message_handler(content_types=['text'])
     def send_text(message):
 
-        if message.text.lower() != 'o':
+        if message.text.lower() == 'n':
+            bot.send_message(message.chat.id, "Ищем новые")
+            new_orders()
+
+        elif message.text.lower() == 'x':
+            bot.send_message(message.chat.id, "Закрыть окно")
+            close()
+
+        elif message.text.lower() != 'o':
             bot.send_message(message.chat.id, "Код принят")
             enter_code(message.text)
             enter_chat()
 
         elif message.text.lower() == 'o':
             try:
+
                 # OPEN ORDERS Section
                 open_temp = open_orders()
+
                 if open_temp == []:
                     bot.send_message(message.chat.id, "-- Нет ордеров: -- ОТКРЫТЫЕ --")
                     print("-- Нет ордеров: -- ОТКРЫТЫЕ --")
@@ -48,6 +58,7 @@ def telegram_bot(token):
                         # Text for searching in youtube
                         bot.send_message(message.chat.id, f"{search_open}")
                         print(search_open)
+
 
                 # WORKING ORDERS Section
                 working_temp = working_orders()

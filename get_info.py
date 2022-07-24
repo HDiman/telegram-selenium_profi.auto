@@ -82,3 +82,10 @@ def working_orders():
     # Returning info about Request Orders
     return get_info("-- В работе --")
 
+
+def new_orders():
+    driver.find_element(By.CLASS_NAME, "ButtonStyles__Container-sc-1kch7k2-0.ePYDqV").click()
+
+def close():
+    driver.find_element(By.CLASS_NAME, "ButtonStyles__StyledIcon-sc-1kch7k2-6.iRFvim").click()
+
