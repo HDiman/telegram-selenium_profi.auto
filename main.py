@@ -17,11 +17,10 @@ def telegram_bot(token):
 
         if message.text.lower() == 'n':
             bot.send_message(message.chat.id, "Ищем новые")
-            new_orders()
+            header = new_orders()
+            print(header)
+            bot.send_message(message.chat.id, f"{header}")
 
-        elif message.text.lower() == 'x':
-            bot.send_message(message.chat.id, "Закрыть окно")
-            close()
 
         elif message.text.lower() != 'o':
             bot.send_message(message.chat.id, "Код принят")
