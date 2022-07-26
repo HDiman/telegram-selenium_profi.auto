@@ -22,8 +22,9 @@ def telegram_bot(token):
         elif message.text.lower() == 't':
             bot.send_message(message.chat.id, "Ищем новые сообщения")
             inbox_text = inbox_orders()
-            print(inbox_text.text)
-            bot.send_message(message.chat.id, f"{inbox_text.text}")
+            for i in range(len(inbox_text)):
+                bot.send_message(message.chat.id, f"{inbox_text[i]}")
+                print(inbox_text[i])
 
         elif message.text.lower() != 'o':
             bot.send_message(message.chat.id, "Код принят")

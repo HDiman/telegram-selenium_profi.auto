@@ -82,28 +82,16 @@ def working_orders():
     # Returning info about Request Orders
     return get_info("-- В работе --")
 
-
-# def new_orders():
-#     new_orders_list = []
-#     driver.find_element(By.CLASS_NAME, "ButtonStyles__Container-sc-1kch7k2-0.ePYDqV").click()
-#     # order_window = driver.find_element(By.ID, "inbox_scrollable_container_id")
-#
-#     # new_orders_text = driver.find_element(By.CLASS_NAME, "ModalStyles__Container-sc-5v78xr-1 dIOCaP").find_elements(By.CLASS_NAME, "NotificationStyles__Description-sc-1iolh49-4")
-#     new_orders_text = driver.find_element(By.CLASS_NAME, "ModalStyles__Container-sc-5v78xr-1 dIOCaP").text
-#     new_orders_list.append(new_orders_text)
-#
-#     # for n in range(len(new_orders)):
-#     #     order_info = new_orders[n].text
-#     #     print(order_info)
-#     #     new_orders_list.append(order_info)
-#
-#     return new_orders_list
-
-
 def click_note():
     driver.find_element(By.CLASS_NAME, "ButtonStyles__Container-sc-1kch7k2-0.ePYDqV").click()
 
 def inbox_orders():
-    # header = driver.find_element(By.XPATH, "/html/body/div[6]/div[3]/div/div[1]/div/div/h4")
-    inbox_text = driver.find_element(By.XPATH, "//*[@id='inbox_scrollable_container_id']/div/div/div")
-    return inbox_text
+    inbox_list = []
+    inbox_all_text = driver.find_element(By.XPATH, "//*[@id='inbox_scrollable_container_id']/div/div/div")
+    inbox_text = inbox_all_text.find_elements(By.CLASS_NAME, "NotificationStyles__Container-sc-1iolh49-0")
+    for n in range(len(inbox_text)):
+        inbox_list.append(inbox_text[n].text)
+
+    # NotificationStyles__Container-sc-1iolh49-0 dgHKEu (not opened orders)
+
+    return inbox_list
