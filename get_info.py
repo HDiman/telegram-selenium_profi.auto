@@ -100,8 +100,10 @@ def working_orders():
 #     return new_orders_list
 
 
-def new_orders():
+def click_note():
     driver.find_element(By.CLASS_NAME, "ButtonStyles__Container-sc-1kch7k2-0.ePYDqV").click()
-    header = driver.find_element(By.XPATH, "/html/body/div[6]/div[3]/div/div[1]/div/div/h4").text
 
-    return header
+def inbox_orders():
+    # header = driver.find_element(By.XPATH, "/html/body/div[6]/div[3]/div/div[1]/div/div/h4")
+    inbox_text = driver.find_element(By.XPATH, "//*[@id='inbox_scrollable_container_id']/div/div/div")
+    return inbox_text

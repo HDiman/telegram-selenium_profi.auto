@@ -16,11 +16,14 @@ def telegram_bot(token):
     def send_text(message):
 
         if message.text.lower() == 'n':
-            bot.send_message(message.chat.id, "Ищем новые")
-            header = new_orders()
-            print(header)
-            bot.send_message(message.chat.id, f"{header}")
+            bot.send_message(message.chat.id, "Открываем окно сообщений")
+            click_note()
 
+        elif message.text.lower() == 't':
+            bot.send_message(message.chat.id, "Ищем новые сообщения")
+            inbox_text = inbox_orders()
+            print(inbox_text.text)
+            bot.send_message(message.chat.id, f"{inbox_text.text}")
 
         elif message.text.lower() != 'o':
             bot.send_message(message.chat.id, "Код принят")
