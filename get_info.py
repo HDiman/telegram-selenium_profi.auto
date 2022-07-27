@@ -91,7 +91,16 @@ def inbox_orders():
     inbox_text = inbox_all_text.find_elements(By.CLASS_NAME, "NotificationStyles__Container-sc-1iolh49-0")
     for n in range(len(inbox_text)):
         inbox_list.append(inbox_text[n].text)
-
-    # NotificationStyles__Container-sc-1iolh49-0 dgHKEu (not opened orders)
-
     return inbox_list
+
+def check_drain():
+    cheked_list = []
+    inbox_list = inbox_orders()
+    for item in inbox_list:
+        split_item = item.split(' ')
+        if "сливает" in split_item:
+            cheked_list.append(item)
+    return cheked_list
+
+
+

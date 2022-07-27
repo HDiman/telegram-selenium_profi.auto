@@ -20,11 +20,18 @@ def telegram_bot(token):
             click_note()
 
         elif message.text.lower() == 't':
-            bot.send_message(message.chat.id, "Ищем новые сообщения")
+            bot.send_message(message.chat.id, "Ищем новые сообщения ...")
             inbox_text = inbox_orders()
-            for i in range(len(inbox_text)):
-                bot.send_message(message.chat.id, f"{inbox_text[i]}")
-                print(inbox_text[i])
+            for item in inbox_text:
+                bot.send_message(message.chat.id, f"{item}")
+                print(item)
+
+        elif message.text.lower() == 'f':
+            bot.send_message(message.chat.id, "Ищем нужный заказ ...")
+            check_list = check_drain()
+            for item in check_list:
+                bot.send_message(message.chat.id, f"{item}")
+                print(item)
 
         elif message.text.lower() != 'o':
             bot.send_message(message.chat.id, "Код принят")
