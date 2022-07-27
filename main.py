@@ -15,21 +15,22 @@ def telegram_bot(token):
     @bot.message_handler(content_types=['text'])
     def send_text(message):
 
-        if message.text.lower() == 'n':
-            bot.send_message(message.chat.id, "Открываем окно сообщений")
-            click_note()
 
-        elif message.text.lower() == 't':
+        if message.text.lower() == 'n':
+            bot.send_message(message.chat.id, "Открываем окно ...")
+            click_open()
+
+        elif message.text.lower() == 'a':
             bot.send_message(message.chat.id, "Ищем новые сообщения ...")
-            inbox_text = inbox_orders()
-            for item in inbox_text:
+            all_list = check_all()
+            for item in all_list:
                 bot.send_message(message.chat.id, f"{item}")
                 print(item)
 
         elif message.text.lower() == 'f':
             bot.send_message(message.chat.id, "Ищем нужный заказ ...")
-            check_list = check_drain()
-            for item in check_list:
+            drain_list = check_drain()
+            for item in drain_list:
                 bot.send_message(message.chat.id, f"{item}")
                 print(item)
 

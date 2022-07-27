@@ -59,11 +59,11 @@ def open_orders():
     # Find out href link to enter Open Orders
     open_orders = driver.find_element(By.ID, "js-tab-orders-repls").get_attribute('href')
     # print(open_orders)
-    time.sleep(3)
+    time.sleep(1)
 
     # inside chat
     driver.get(url=open_orders)
-    time.sleep(3)
+    time.sleep(1)
 
     # Returning info from Open Orders
     return get_info("-- Открытые ордера --")
@@ -73,34 +73,46 @@ def working_orders():
     # Find out href link to enter Working Orders
     working_orders = driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/div[1]/div/a[2]").get_attribute('href')
     # print(working_orders)
-    time.sleep(3)
+    time.sleep(1)
 
     # inside chat
     driver.get(url=working_orders)
-    time.sleep(3)
+    time.sleep(1)
 
     # Returning info about Request Orders
     return get_info("-- В работе --")
 
-def click_note():
+
+def click_open():
+    restart = driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/div[1]/div/a[2]").get_attribute('href')
+    driver.get(url=restart)
+    time.sleep(1)
     driver.find_element(By.CLASS_NAME, "ButtonStyles__Container-sc-1kch7k2-0.ePYDqV").click()
 
-def inbox_orders():
-    inbox_list = []
+# def click_close():
+#     driver.find_element(By.CLASS_NAME, "ModalStyles__Close-sc-5v78xr-4").click()
+
+def text_window():
     inbox_all_text = driver.find_element(By.XPATH, "//*[@id='inbox_scrollable_container_id']/div/div/div")
-    inbox_text = inbox_all_text.find_elements(By.CLASS_NAME, "NotificationStyles__Container-sc-1iolh49-0")
-    for n in range(len(inbox_text)):
-        inbox_list.append(inbox_text[n].text)
+    get_text = inbox_all_text.find_elements(By.CLASS_NAME, "NotificationStyles__Container-sc-1iolh49-0")
+    return get_text
+
+
+def check_all():
+    inbox_text = text_window()
+    inbox_list = []
+    for item in inbox_text:
+        inbox_list.append(item.text)
     return inbox_list
 
 def check_drain():
-    cheked_list = []
-    inbox_list = inbox_orders()
-    for item in inbox_list:
+    checked_text = text_window()
+    checked_list = []
+    for item in checked_text:
+        item = item.text
         split_item = item.split(' ')
         if "сливает" in split_item:
-            cheked_list.append(item)
-    return cheked_list
-
+            checked_list.append(item)
+    return checked_list
 
 
