@@ -89,14 +89,10 @@ def click_open():
     time.sleep(1)
     driver.find_element(By.CLASS_NAME, "ButtonStyles__Container-sc-1kch7k2-0.ePYDqV").click()
 
-# def click_close():
-#     driver.find_element(By.CLASS_NAME, "ModalStyles__Close-sc-5v78xr-4").click()
-
 def text_window():
     inbox_all_text = driver.find_element(By.XPATH, "//*[@id='inbox_scrollable_container_id']/div/div/div")
     get_text = inbox_all_text.find_elements(By.CLASS_NAME, "NotificationStyles__Container-sc-1iolh49-0")
     return get_text
-
 
 def check_all():
     inbox_text = text_window()
@@ -104,6 +100,7 @@ def check_all():
     for item in inbox_text:
         inbox_list.append(item.text)
     return inbox_list
+
 
 def check_drain():
     checked_text = text_window()
