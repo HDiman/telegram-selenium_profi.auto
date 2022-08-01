@@ -226,3 +226,38 @@ telegram_bot(token)
 #
 # if __name__ == "__main__":
 #     telegram_bot(token=token)
+
+
+# @bot.message_handler(commands=['loop'])
+# def loop_message(message):
+#     while True:
+#         if message.text == "loop":
+#             try:
+#                 bot.send_message(message.chat.id, "Открываем окно ...")
+#                 click_open()
+#                 time.sleep(3)
+#                 bot.send_message(message.chat.id, "Список заказов в окне:")
+#                 all_list = check_all()
+#                 if all_list == []:
+#                     bot.send_message(message.chat.id, "Заказов нет")
+#                 else:
+#                     for item in all_list:
+#                         bot.send_message(message.chat.id, f"{item}")
+#                         print(item)
+#                 time.sleep(57)
+#             except Exception as ex:
+#                 print(ex)
+#                 bot.send_message(message.chat.id, "Error in loop!")
+#         elif message.text == "stop":
+#             bot.send_message(message.chat.id, "... Ожидаем указа ... ")
+#             pass
+
+# @bot.message_handler(commands=['stop'])
+# def loop_message(message):
+#     while True:
+#         try:
+#             bot.send_message(message.chat.id, "... Ожидаем указа ... ")
+#             time.sleep(60000)
+#         except Exception as ex:
+#             print(ex)
+#             bot.send_message(message.chat.id, "Error in stop!")

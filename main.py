@@ -10,38 +10,9 @@ def validate_pin(pin):
     else:
         return False
 
+
 def telegram_bot(token):
     bot = telebot.TeleBot(token)
-
-    @bot.message_handler(commands=['loop'])
-    def loop_message(message):
-        while True:
-            try:
-                bot.send_message(message.chat.id, "Открываем окно ...")
-                click_open()
-                time.sleep(3)
-                bot.send_message(message.chat.id, "Список заказов в окне:")
-                all_list = check_all()
-                if all_list == []:
-                    bot.send_message(message.chat.id, "Заказов нет")
-                else:
-                    for item in all_list:
-                        bot.send_message(message.chat.id, f"{item}")
-                        print(item)
-                time.sleep(57)
-            except Exception as ex:
-                print(ex)
-                bot.send_message(message.chat.id, "Error in loop!")
-
-    @bot.message_handler(commands=['stop'])
-    def loop_message(message):
-        while True:
-            try:
-                bot.send_message(message.chat.id, "... Ожидаем указа ... ")
-                time.sleep(60000)
-            except Exception as ex:
-                print(ex)
-                bot.send_message(message.chat.id, "Error in stop!")
 
     @bot.message_handler(commands=['start'])
     def start_message(message):
@@ -61,6 +32,29 @@ def telegram_bot(token):
                 enter_code(message.text)
                 enter_chat()
                 bot.send_message(message.chat.id, "Можно работать")
+            elif message.text == "loop":
+                while True:
+                    try:
+                        bot.send_message(message.chat.id, "Открываем окно ...")
+                        click_open()
+                        time.sleep(3)
+                        bot.send_message(message.chat.id, "Список заказов в окне:")
+                        all_list = check_all()
+                        if all_list == []:
+                            bot.send_message(message.chat.id, "Заказов нет")
+                        else:
+                            for item in all_list:
+                                bot.send_message(message.chat.id, f"{item}")
+                                print(item)
+                        time.sleep(57)
+                    except Exception as ex:
+                        print(ex)
+                        bot.send_message(message.chat.id, "Error in loop!")
+            elif message.text == "stop":
+                bot.send_message(message.chat.id, "... Ожидаем указа ... ")
+                while True:
+                    time.sleep(60)
+                    pass
             else:
                 bot.send_message(message.chat.id, "Повторите ввод")
         except Exception as ex:
