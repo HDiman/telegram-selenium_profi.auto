@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 import time
 
 # Path to chromedriver
-chrome_driver_path = "/Users/dsannikov/Documents/GitHub/ParsingPages/telegram-selenium-profi.ru/driver/chromedriver"
+chrome_driver_path = "/Users/dsannikov/Documents/GitHub/ParsingPages/telegram-selenium_profi.auto/driver/chromedriver"
 # Options
 options = webdriver.ChromeOptions()
 options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36")

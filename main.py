@@ -62,7 +62,7 @@ def telegram_bot(token):
                 enter_chat()
                 bot.send_message(message.chat.id, "Введите время в минутах")
             elif validate_time(message.text):
-                bot.send_message(message.chat.id, f"Время установлено на: {message.text} минут")
+                bot.send_message(message.chat.id, f"Время установлено на: {message.text} мин.")
                 looping(int(message.text))
 
             else:
