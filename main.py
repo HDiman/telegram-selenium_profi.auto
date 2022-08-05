@@ -23,7 +23,7 @@ def telegram_bot(token):
     @bot.message_handler(commands=['start'])
     def start_message(message):
         try:
-            bot.send_message(message.chat.id, "Начинаем")
+            bot.send_message(message.chat.id, "Начинаем работу Т-О-Т-Е")
             # Functions to open webpages for search
             enter_web_page()
         except Exception as ex:
@@ -37,7 +37,7 @@ def telegram_bot(token):
         def looping(num):
             for i in range(num):
                 try:
-                    bot.send_message(message.chat.id, "-----------------------------------------------------------")
+                    bot.send_message(message.chat.id, "+-----------------------------------------------------------+")
                     click_open()
                     time.sleep(3)
                     bot.send_message(message.chat.id, "Список заказов:")
@@ -48,12 +48,12 @@ def telegram_bot(token):
                         for item in all_list:
                             bot.send_message(message.chat.id, f"{item}")
                             print(item)
-                    bot.send_message(message.chat.id, f"Осталось {num - (i + 1)} мин. ...")
+                    bot.send_message(message.chat.id, f"Осталось {num - (i + 1)} мин ...")
                     time.sleep(57)
                 except Exception as ex:
                     print(ex)
                     bot.send_message(message.chat.id, "Error in loop!")
-            bot.send_message(message.chat.id, "... Ожидаю след. действия ... ")
+            bot.send_message(message.chat.id, "... Ожидаю команду ... ")
 
         try:
             if validate_pin(message.text):
