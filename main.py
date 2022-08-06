@@ -48,6 +48,10 @@ def telegram_bot(token):
                         for item in all_list:
                             bot.send_message(message.chat.id, f"{item}")
                             print(item)
+                        drain_list = check_drain()
+                        for item_2 in drain_list:
+                            bot.send_message(message.chat.id, f"{item_2}")
+                            print(item_2)
                     bot.send_message(message.chat.id, f"Осталось {num - (i + 1)} мин ...")
                     time.sleep(57)
                 except Exception as ex:
