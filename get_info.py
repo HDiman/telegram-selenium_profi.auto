@@ -89,11 +89,16 @@ def click_open():
     time.sleep(1)
     driver.find_element(By.CLASS_NAME, "ButtonStyles__Container-sc-1kch7k2-0.ePYDqV").click()
 
+
+# =========================================================
+
+# Getting all list of orders from chat window
 def text_window():
     inbox_all_text = driver.find_element(By.XPATH, "//*[@id='inbox_scrollable_container_id']/div/div/div")
     get_text = inbox_all_text.find_elements(By.CLASS_NAME, "NotificationStyles__Container-sc-1iolh49-0")
     return get_text
 
+# Listing orders separately
 def check_all():
     inbox_text = text_window()
     inbox_list = []
@@ -101,7 +106,7 @@ def check_all():
         inbox_list.append(item.text)
     return inbox_list
 
-
+# Listing orders with word "Сливает"
 def check_drain():
     checked_text = text_window()
     checked_list = []
