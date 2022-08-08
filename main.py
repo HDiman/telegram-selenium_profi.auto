@@ -16,6 +16,13 @@ def validate_time(time_enter):
     else:
         return False
 
+def validate_word(word_enter):
+    if re.search('^[а-яА-ЯёЁa-zA-Z0-9]+$', word_enter):
+        return True
+    else:
+        return False
+
+loop_text = []
 
 def telegram_bot(token):
     bot = telebot.TeleBot(token)
@@ -34,24 +41,20 @@ def telegram_bot(token):
     def send_text(message):
 
         # Function for looping num times
-        def looping(num):
+        def looping(num, word):
             for i in range(num):
                 try:
                     bot.send_message(message.chat.id, "+-----------------------------------------------------------+")
                     click_open()
                     time.sleep(3)
                     bot.send_message(message.chat.id, "Список заказов:")
-                    all_list = check_all()
+                    all_list = check_word(word)
                     if all_list == []:
-                        bot.send_message(message.chat.id, "Заказов нет")
+                        bot.send_message(message.chat.id, "Нужных заказов нет")
                     else:
                         for item in all_list:
                             bot.send_message(message.chat.id, f"{item}")
                             print(item)
-                        drain_list = check_drain()
-                        for item_2 in drain_list:
-                            bot.send_message(message.chat.id, f"{item_2}")
-                            print(item_2)
                     bot.send_message(message.chat.id, f"Осталось {num - (i + 1)} мин ...")
                     time.sleep(57)
                 except Exception as ex:
@@ -67,7 +70,13 @@ def telegram_bot(token):
                 bot.send_message(message.chat.id, "Введите время в минутах")
             elif validate_time(message.text):
                 bot.send_message(message.chat.id, f"Время установлено на: {message.text} мин.")
-                looping(int(message.text))
+                loop_text.append(message.text)
+            elif validate_word(message.text):
+                bot.send_message(message.chat.id, f"Ищем слово {message.text} в заказе")
+                loop_text.append(message.text)
+                print(loop_text)
+                looping(int(loop_text[0]), loop_text[1])
+                loop_text.clear()
 
             else:
                 bot.send_message(message.chat.id, "Повторите ввод")

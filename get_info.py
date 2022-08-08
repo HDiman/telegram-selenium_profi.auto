@@ -107,13 +107,13 @@ def check_all():
     return inbox_list
 
 # Listing orders with word "Сливает"
-def check_drain():
+def check_word(word):
     checked_text = text_window()
     checked_list = []
     for item in checked_text:
         item = item.text
         split_item = item.split(' ')
-        if "сливает" in split_item:
+        if word in split_item:
             checked_list.append(item)
     return checked_list
 
