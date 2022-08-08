@@ -1,4 +1,23 @@
 from enter_profi import *
+import re
+
+def validate_pin(pin):
+    if re.search('^\d{4}$', pin):
+        return True
+    else:
+        return False
+
+def validate_time(time_enter):
+    if re.search('^\d{1,2}$', time_enter):
+        return True
+    else:
+        return False
+
+def validate_word(word_enter):
+    if re.search('^[а-яА-ЯёЁa-zA-Z0-9]+$', word_enter):
+        return True
+    else:
+        return False
 
 
 def get_info(order_name):
