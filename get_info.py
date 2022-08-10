@@ -125,7 +125,7 @@ def check_all():
         inbox_list.append(item.text)
     return inbox_list
 
-# Listing orders with word "Сливает"
+# Listing orders with any word
 def check_word(word):
     checked_text = text_window()
     checked_list = []
