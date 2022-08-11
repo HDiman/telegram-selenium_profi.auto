@@ -2,6 +2,9 @@ from get_info import *
 import telebot
 from auth_data import token
 
+# Project is closed. Lessons learned.
+# May be in future it will be used for other professions on other mobile phone number.
+
 
 loop_text = []
 
@@ -11,7 +14,7 @@ def telegram_bot(token):
     @bot.message_handler(commands=['start'])
     def start_message(message):
         try:
-            bot.send_message(message.chat.id, "Начинаем работу Т-О-Т-Е")
+            bot.send_message(message.chat.id, "Начинаем работу:")
             # Functions to open webpages for search
             enter_web_page()
         except Exception as ex:
